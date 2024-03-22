@@ -7,8 +7,10 @@ import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
+import { format } from "date-fns"
 
 export default function Index({ posts, globalData }) {
+
   return (
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
@@ -19,6 +21,7 @@ export default function Index({ posts, globalData }) {
         </h1>
         <ul className="w-full">
           {posts.map((post) => (
+            
             <li
               key={post.id}
               className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
@@ -29,9 +32,9 @@ export default function Index({ posts, globalData }) {
               >
 
                 <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                  {post.created_at && (
+                  {format(new Date(post?.created_at), 'dd/MM/yyyy') && (
                     <p className="uppercase mb-3 font-bold opacity-60">
-                      {post.created_at}
+                      {format(new Date(post?.created_at), 'dd/MM/yyyy')}
                     </p>
                   )}
                   <h2 className="text-2xl md:text-3xl">{post.title}</h2>
